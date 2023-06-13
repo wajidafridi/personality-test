@@ -2,6 +2,7 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import HomeScreen from "./pages/Home";
+import TestScreen from "./pages/Test";
 import NotFound from "./pages/404";
 
 const router = createBrowserRouter([
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/test",
-    element: <div>test</div>,
+    element: <TestScreen />,
   },
   {
     path: "/result",
