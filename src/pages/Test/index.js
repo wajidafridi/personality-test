@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../context";
 // @import actions
 import { SET_TOTAL_SCORE } from "../../context/actions";
+// @import data
+import { questions, answers } from "../../data";
+// @import styles
 import styles from "./index.module.scss";
 
 const Question = ({
@@ -15,7 +18,7 @@ const Question = ({
   isFirstQuestion,
   handlePreviousQuestion,
 }) => {
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(null);
 
   const handleScoreChange = (event) => {
     const newScore = parseInt(event.target.value, 10);
@@ -33,13 +36,13 @@ const Question = ({
       </p>
       <h2 className={styles.title}>{question.text}</h2>
       <div className={`flex column ${styles.answerOptions}`}>
-        {question.answers.map((answer, index) => (
+        {answers.map((answer, index) => (
           <label key={index} className={styles.option}>
             <input
               type="radio"
-              value={answer.score}
               onChange={handleScoreChange}
-              checked={score === answer.score}
+              value={answer.score * question.score}
+              checked={score === answer.score * question.score}
             />
             {answer.text}
           </label>
@@ -58,9 +61,11 @@ const Question = ({
           Previous
         </button>
         <button
-          disabled={score === 0}
+          disabled={score === null}
           onClick={handleNextQuestion}
-          className={`${styles.next} button ${score === 0 ? "disabled" : ""}`}
+          className={`${styles.next} button ${
+            score === null ? "disabled" : ""
+          }`}
         >
           {isLastQuestion ? "Submit" : "Next"}
         </button>
