@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import HomeScreen from "./pages/Home";
 import TestScreen from "./pages/Test";
+import ResultScreen from "./pages/Result";
 import NotFound from "./pages/404";
 
 const router = createBrowserRouter([
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/result",
-    element: <div>result</div>,
+    element: <ResultScreen />,
   },
 ]);
 
