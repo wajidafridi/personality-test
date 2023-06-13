@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  .App {
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+    padding: 40px 20px;
+    text-align: center;
+    flex-direction: column;
+    .button {
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      background-color: #333;
+      &.disabled {
+        cursor: not-allowed;
+        background-color: #aaa;
+      }
+    }
+  }
+}
