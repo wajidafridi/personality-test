@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <main>Welcome to Personality Test</main>
+      <footer className="App-footer">
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          &copy; {new Date().getFullYear()} Personality Test. All rights
+          reserved.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      </footer>
     </div>
   );
-}
+};
 
 export default App;
