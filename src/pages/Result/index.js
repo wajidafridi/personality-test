@@ -19,7 +19,7 @@ const ResultScreen = ({ scores = 0 }) => {
   const personalityTrait = calculatePersonality();
 
   return (
-    <div className="page">
+    <div>
       <h2>Your Personality Trait</h2>
       <p>{personalityTrait}</p>
     </div>

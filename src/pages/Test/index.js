@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import questions from "../../data";
+import styles from "./index.module.scss";
 
 const Question = ({ question, handleAnswer }) => {
   const [score, setScore] = useState(0);
@@ -16,10 +17,10 @@ const Question = ({ question, handleAnswer }) => {
   };
 
   return (
-    <div className="questionContainer">
-      <h2>Question {question.id}</h2>
-      <p>{question.text}</p>
-      <div className="answer-options">
+    <div className={styles.question}>
+      <h2 className={styles.title}>Question {question.id}</h2>
+      <p className={styles.description}>{question.text}</p>
+      <div className={styles.answerOptions}>
         {question.answers.map((answer, index) => (
           <label key={index}>
             <input
@@ -34,7 +35,7 @@ const Question = ({ question, handleAnswer }) => {
       </div>
       <button
         onClick={handleNextQuestion}
-        className={`next-button ${score === 0 ? "disabled" : ""}`}
+        className={`button ${score === 0 ? "disabled" : ""}`}
       >
         Next
       </button>
@@ -59,17 +60,19 @@ const TestScreen = () => {
   };
 
   return (
-    <div className="page">
-      {questions.map(
-        (question, index) =>
-          index === currentIndex && (
-            <Question
-              key={index}
-              question={question}
-              handleAnswer={handleAnswer}
-            />
-          )
-      )}
+    <div className={styles.testPage}>
+      <div className={styles.questionsContainer}>
+        {questions.map(
+          (question, index) =>
+            index === currentIndex && (
+              <Question
+                key={index}
+                question={question}
+                handleAnswer={handleAnswer}
+              />
+            )
+        )}
+      </div>
     </div>
   );
 };

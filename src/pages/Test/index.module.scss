@@ -1,0 +1,20 @@
+.testPage {
+  .questionsContainer {
+    margin-bottom: 20px;
+    .question {
+      text-align: left;
+      margin-bottom: 20px;
+      .title {
+        margin-bottom: 10px;
+      }
+      .description {
+        margin-bottom: 20px;
+      }
+      .answerOptions {
+        display: flex;
+        margin-top: 10px;
+        flex-direction: column;
+      }
+    }
+  }
+}
