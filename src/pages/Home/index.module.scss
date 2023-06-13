@@ -1,5 +1,22 @@
 .homePage {
-  .title {
-    margin-bottom: 20px;
+  margin: auto;
+  .left {
+    margin-right: 40px;
+    .title {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+    .description {
+      margin-top: 0;
+      font-size: 24px;
+      text-align: left;
+    }
+  }
+  .right {
+    margin: auto;
+    .button {
+      font-size: 32px;
+      padding: 25px 70px;
+    }
   }
 }

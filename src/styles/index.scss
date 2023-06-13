@@ -4,6 +4,7 @@
 
 body {
   margin: 0;
+  background: #f5f7f9;
   font-family: Arial, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -22,12 +23,23 @@ body {
       padding: 10px 20px;
       border-radius: 4px;
       text-decoration: none;
-      background-color: #333;
+      background-color: #0c2b4f;
+      &:hover {
+        background-color: #4a5f78;
+      }
       &.disabled {
         cursor: not-allowed;
+        pointer-events: none;
         background-color: #aaa;
       }
     }
+  }
+
+  .section {
+    padding: 40px;
+    margin-bottom: 32px;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
   .flex {
