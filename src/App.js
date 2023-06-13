@@ -1,6 +1,7 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import { AppContextProvider } from "./context";
 import HomeScreen from "./pages/Home";
 import TestScreen from "./pages/Test";
 import ResultScreen from "./pages/Result";
@@ -25,7 +26,9 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <div className="App">
-      <RouterProvider router={router} />
+      <AppContextProvider>
+        <RouterProvider router={router} />
+      </AppContextProvider>
     </div>
   );
 };
