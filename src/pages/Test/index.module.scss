@@ -1,19 +1,44 @@
 .testPage {
+  margin: auto;
   .questionsContainer {
+    min-width: 720px;
     margin-bottom: 20px;
     .question {
       text-align: left;
       margin-bottom: 20px;
-      .title {
-        margin-bottom: 10px;
+      .questionNo {
+        font-size: 14px;
+        color: #26313e;
+        font-weight: 400;
+        margin: 0 0 10px;
       }
-      .description {
-        margin-bottom: 20px;
+      .title {
+        font-size: 24px;
+        font-weight: 500;
+        margin: 0 0 16px;
       }
       .answerOptions {
-        display: flex;
         margin-top: 10px;
-        flex-direction: column;
+        .option {
+          font-size: 16px;
+          font-weight: 400;
+          margin-bottom: 8px;
+        }
+      }
+      .buttonContainer {
+        margin-top: 40px;
+        button {
+          width: 100%;
+          padding: 18px 40px;
+          &.prev {
+            color: #26313e;
+            background-color: #fff;
+            border: 1px solid #97a5b4;
+          }
+          &.next {
+            margin-left: 40px;
+          }
+        }
       }
     }
   }

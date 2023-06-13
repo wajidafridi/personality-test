@@ -4,7 +4,14 @@ import { useNavigate } from "react-router-dom";
 import questions from "../../data";
 import styles from "./index.module.scss";
 
-const Question = ({ question, handleAnswer }) => {
+const Question = ({
+  question,
+  handleAnswer,
+  totalQuestions,
+  isLastQuestion,
+  isFirstQuestion,
+  handlePreviousQuestion,
+}) => {
   const [score, setScore] = useState(0);
 
   const handleScoreChange = (event) => {
@@ -18,11 +25,13 @@ const Question = ({ question, handleAnswer }) => {
 
   return (
     <div className={styles.question}>
-      <h2 className={styles.title}>Question {question.id}</h2>
-      <p className={styles.description}>{question.text}</p>
-      <div className={styles.answerOptions}>
+      <p className={styles.questionNo}>
+        Question {question.id}/{totalQuestions}
+      </p>
+      <h2 className={styles.title}>{question.text}</h2>
+      <div className={`flex column ${styles.answerOptions}`}>
         {question.answers.map((answer, index) => (
-          <label key={index}>
+          <label key={index} className={styles.option}>
             <input
               type="radio"
               value={answer.score}
@@ -33,12 +42,26 @@ const Question = ({ question, handleAnswer }) => {
           </label>
         ))}
       </div>
-      <button
-        onClick={handleNextQuestion}
-        className={`button ${score === 0 ? "disabled" : ""}`}
+      <div
+        className={`flex justify-center items-center ${styles.buttonContainer}`}
       >
-        Next
-      </button>
+        <button
+          disabled={isFirstQuestion}
+          onClick={handlePreviousQuestion}
+          className={`${styles.prev} button ${
+            isFirstQuestion ? "disabled" : ""
+          }`}
+        >
+          Previous
+        </button>
+        <button
+          disabled={score === 0}
+          onClick={handleNextQuestion}
+          className={`${styles.next} button ${score === 0 ? "disabled" : ""}`}
+        >
+          {isLastQuestion ? "Submit" : "Next"}
+        </button>
+      </div>
     </div>
   );
 };
@@ -59,16 +82,24 @@ const TestScreen = () => {
     }
   };
 
+  const handlePreviousQuestion = () => {
+    setCurrentIndex(currentIndex - 1);
+  };
+
   return (
     <div className={styles.testPage}>
-      <div className={styles.questionsContainer}>
+      <div className={`section ${styles.questionsContainer}`}>
         {questions.map(
           (question, index) =>
             index === currentIndex && (
               <Question
                 key={index}
                 question={question}
+                totalQuestions={questions.length}
                 handleAnswer={handleAnswer}
+                handlePreviousQuestion={handlePreviousQuestion}
+                isFirstQuestion={index === 0}
+                isLastQuestion={index === questions.length - 1}
               />
             )
         )}
