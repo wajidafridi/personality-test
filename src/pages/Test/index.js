@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // @import context
@@ -12,6 +12,7 @@ import styles from "./index.module.scss";
 
 const Question = ({
   question,
+  totalScore,
   handleAnswer,
   totalQuestions,
   isLastQuestion,
@@ -28,6 +29,11 @@ const Question = ({
   const handleNextQuestion = () => {
     handleAnswer(question.id, score);
   };
+
+  useEffect(() => {
+    if (totalScore && totalScore.hasOwnProperty(question.id))
+      setScore(totalScore[question.id]);
+  }, [totalScore]);
 
   return (
     <div className={styles.question}>
@@ -76,22 +82,23 @@ const Question = ({
 
 const TestScreen = () => {
   const navigate = useNavigate();
-  const { appDispatch } = useContext(AppContext);
+  const { appDispatch, appState } = useContext(AppContext);
+  const { totalScore } = appState;
 
-  const [scores, setScores] = useState({});
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleAnswer = (questionId, score) => {
     setCurrentIndex(currentIndex < questions.length - 1 ? currentIndex + 1 : 0);
-    const totalScore = { ...scores, [questionId]: score };
-    setScores(totalScore);
+
+    const total_Score = { ...totalScore, [questionId]: score };
+    appDispatch({
+      type: SET_TOTAL_SCORE,
+      payload: total_Score,
+    });
+
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      appDispatch({
-        type: SET_TOTAL_SCORE,
-        payload: totalScore,
-      });
       navigate("/result");
     }
   };
@@ -109,6 +116,7 @@ const TestScreen = () => {
               <Question
                 key={index}
                 question={question}
+                totalScore={totalScore}
                 totalQuestions={questions.length}
                 handleAnswer={handleAnswer}
                 handlePreviousQuestion={handlePreviousQuestion}

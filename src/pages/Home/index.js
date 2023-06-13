@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./index.module.scss";
 
+// @import context
+import { AppContext } from "../../context";
+// @import actions
+import { SET_TOTAL_SCORE } from "../../context/actions";
+
 const HomeScreen = () => {
+  const { appDispatch } = useContext(AppContext);
+
+  useEffect(() => {
+    appDispatch({
+      type: SET_TOTAL_SCORE,
+      payload: null,
+    });
+  }, []);
+
   return (
     <div className={`${styles.homePage}`}>
       <div className="section flex">
