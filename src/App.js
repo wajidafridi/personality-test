@@ -1,15 +1,25 @@
 import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <div>Personality Test</div>,
+  },
+  {
+    path: "/test",
+    element: <div>test</div>,
+  },
+  {
+    path: "/result",
+    element: <div>result</div>,
+  },
+]);
 
 const App = () => {
   return (
     <div className="App">
-      <main>Welcome to Personality Test</main>
-      <footer className="App-footer">
-        <p>
-          &copy; {new Date().getFullYear()} Personality Test. All rights
-          reserved.
-        </p>
-      </footer>
+      <RouterProvider router={router} />
     </div>
   );
 };
