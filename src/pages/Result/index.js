@@ -1,22 +1,32 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+// @import context
+import { AppContext } from "../../context";
 
-const ResultScreen = ({ scores = 0 }) => {
+const ResultScreen = () => {
+  const navigate = useNavigate();
+  const { appState } = useContext(AppContext);
+  const { totalScore } = appState;
+  const [personalityTrait, setPersonalityTrait] = useState();
+
   const calculatePersonality = () => {
-    const totalScore = Object.values(scores).reduce(
+    const total_Score = Object.values(totalScore).reduce(
       (sum, score) => sum + score,
       0
     );
-    const averageScore = totalScore / Object.keys(scores).length;
+    const averageScore = total_Score / Object.keys(totalScore).length;
 
     // Customize the threshold and condition based on your requirements
-    if (averageScore >= 3) {
-      return "Extrovert";
-    } else {
-      return "Introvert";
-    }
+    return averageScore >= 0 ? "Extrovert" : "Introvert";
   };
 
-  const personalityTrait = calculatePersonality();
+  useEffect(() => {
+    if (totalScore === null) {
+      navigate("/");
+    } else {
+      setPersonalityTrait(calculatePersonality());
+    }
+  }, []);
 
   return (
     <div>

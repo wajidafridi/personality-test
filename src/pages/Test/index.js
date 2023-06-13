@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import questions from "../../data";
+// @import context
+import { AppContext } from "../../context";
+// @import actions
+import { SET_TOTAL_SCORE } from "../../context/actions";
 import styles from "./index.module.scss";
 
 const Question = ({
@@ -68,16 +71,22 @@ const Question = ({
 
 const TestScreen = () => {
   const navigate = useNavigate();
+  const { appDispatch } = useContext(AppContext);
 
   const [scores, setScores] = useState({});
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleAnswer = (questionId, score) => {
     setCurrentIndex(currentIndex < questions.length - 1 ? currentIndex + 1 : 0);
-    setScores({ ...scores, [questionId]: score });
+    const totalScore = { ...scores, [questionId]: score };
+    setScores(totalScore);
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
+      appDispatch({
+        type: SET_TOTAL_SCORE,
+        payload: totalScore,
+      });
       navigate("/result");
     }
   };
