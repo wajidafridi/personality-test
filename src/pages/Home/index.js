@@ -19,7 +19,7 @@ const HomeScreen = () => {
 
   return (
     <div className={`${styles.homePage}`}>
-      <div className="section flex">
+      <div className={`${styles.section} section flex`}>
         <div className={`flex column ${styles.left}`}>
           <h1 className={styles.title}>Personality Test Project</h1>
           <p className={styles.description}>
