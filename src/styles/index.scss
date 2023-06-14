@@ -12,7 +12,7 @@ body {
     margin: 0;
     display: flex;
     min-height: 100vh;
-    padding: 40px 20px;
+    padding: 20px;
     text-align: center;
     flex-direction: column;
     .button {
@@ -32,6 +32,11 @@ body {
         cursor: not-allowed;
         pointer-events: none;
         background-color: #aaa;
+      }
+    }
+    header.header {
+      .siteLogo {
+        height: 80px;
       }
     }
   }
