@@ -1,7 +1,6 @@
 .testPage {
   margin: auto;
   .questionsContainer {
-    min-width: 720px;
     margin-bottom: 20px;
     .question {
       text-align: left;
@@ -37,9 +36,18 @@
           }
           &.next {
             margin-left: 40px;
+            @media only screen and (max-width: 640px) {
+              margin: 0 0 15px;
+            }
           }
         }
+        @media only screen and (max-width: 640px) {
+          flex-direction: column-reverse;
+        }
       }
+    }
+    @media only screen and (min-width: 760px) {
+      min-width: 720px;
     }
   }
 }

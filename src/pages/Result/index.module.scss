@@ -1,10 +1,15 @@
 .resultPage {
   margin: auto;
   .resultContainer {
-    min-width: 720px;
     margin-bottom: 20px;
     .type {
       margin-bottom: 40px;
+    }
+    @media only screen and (min-width: 560px) {
+      min-width: 510px;
+    }
+    @media only screen and (min-width: 760px) {
+      min-width: 720px;
     }
   }
 }
